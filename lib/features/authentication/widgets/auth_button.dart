@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/features/authentication/login_form_screen.dart';
 import 'package:tiktok_clone/features/authentication/username_screen.dart';
 
 class AuthBotton extends StatelessWidget {
@@ -21,6 +22,14 @@ class AuthBotton extends StatelessWidget {
     );
   }
 
+  void _onEmailLoginTap(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const LoginFormScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -29,6 +38,9 @@ class AuthBotton extends StatelessWidget {
           case 1.1: // Sign Up + Use email & password
             log('🔒 I want to sign up with my email and password !');
             _onEmailTap(context);
+          case 2.1: // Log In + Use email & password
+            log('🔒 I want to log in with my email and password !');
+            _onEmailLoginTap(context);
           default: // Undefined Type
             log('🔒 Undefined Type.');
         }
