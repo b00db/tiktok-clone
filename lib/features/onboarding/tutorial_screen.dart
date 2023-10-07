@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/features/navigation/main_navigation_screen.dart';
 import 'package:tiktok_clone/features/onboarding/widgets/tutorial_text.dart';
 
 enum Direction { up, down }
@@ -45,6 +46,14 @@ class _TutorialScreenState extends State<TutorialScreen> {
     }
   }
 
+  void _onTap() {
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(
+          builder: (context) => const MainNavigationScreen(),
+        ),
+        (route) => false);
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -73,20 +82,23 @@ class _TutorialScreenState extends State<TutorialScreen> {
             child: AnimatedOpacity(
               opacity: _showingPage == Page.first ? 0 : 1,
               duration: const Duration(milliseconds: 300),
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  vertical: Sizes.size16,
-                ),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
-                ),
-                child: const Text(
-                  'Start watching',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                    fontSize: Sizes.size16,
+              child: GestureDetector(
+                onTap: _onTap,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: Sizes.size16,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  child: const Text(
+                    'Start watching',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                      fontSize: Sizes.size16,
+                    ),
                   ),
                 ),
               ),
