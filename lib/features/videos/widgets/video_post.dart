@@ -152,7 +152,7 @@ class _VideoPostState extends State<VideoPost>
               ],
             ),
           ),
-          Positioned(
+          const Positioned(
             bottom: 20,
             right: 10,
             child: Column(
